@@ -1,0 +1,22 @@
+# Dependencias
+node_modules/
+
+# Builds y archivos generados
+dist/
+coverage/
+
+# Variables de entorno y logs locales
+.env
+.env.*
+!.env.example
+*.log
+
+# Prompts: la documentación del proyecto sí se conserva
+**/*prompt*.md
+**/*PROMPT*.md
+.github/prompts/
+
+# Archivos temporales del sistema y del editor
+.DS_Store
+Thumbs.db
+.vscode/
