@@ -16,6 +16,11 @@ coverage/
 **/*PROMPT*.md
 .github/prompts/
 
+# Documentos de requerimientos y guias de estilos locales
+requerimientos*.md
+estilos*.md
+GUIA-ESTILOS.md
+
 # Archivos temporales del sistema y del editor
 .DS_Store
 Thumbs.db

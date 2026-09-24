@@ -41,10 +41,15 @@ La aplicación está pensada como una landing page comercial de alto impacto, co
 ## Cambios implementados recientemente
 
 - Se creó la versión visual “White”, con fondo blanco predominante y una identidad más limpia, corporativa y expresiva.
+- Se agregó un switch accesible de tema con estados “Claro” y “Oscuro”; White es el modo predeterminado.
+- La preferencia de tema se persiste en `localStorage` y se aplica mediante `data-theme` para evitar colisiones entre reglas.
+- El modo oscuro recupera fondos, superficies, bordes, textos y sombras definidos en `GUIA-ESTILOS.md`.
 - Se aplicaron bordes lila gruesos en tarjetas, pasos, resultados, FAQ y elementos destacados.
 - Se incorporaron estados hover en verde para los desplegables FAQ y CTAs principales.
+- En modo oscuro, los botones de WhatsApp y “Empezar diagnóstico” tienen hover verde sin sombreado.
+- En modo oscuro, los títulos de Servicios, Sectores, Procesos, FAQ y Contacto cambian a verde al hacer hover o focus.
 - Se corrigió y dejó operativo el menú hamburguesa mobile.
-- Se removed el enlace “Cotizador” del navbar para simplificar la navegación principal.
+- Se removió el enlace “Cotizador” del navbar para simplificar la navegación principal.
 - El CTA principal sigue siendo por WhatsApp y el flujo del cotizador permanece disponible desde otras partes del sitio.
 - Se ajustó la copy para evitar text placeholders y lenguaje repetitivo.
 - Se dejaron los assets estáticos en `public/` para que funcionen correctamente en Vercel.
@@ -69,6 +74,15 @@ La tipografía prioriza `Articulat CF` para títulos y textos, con `DM Sans` com
 
 La navegación por sección se maneja con scroll suave y URL limpia, evitando hashes innecesarios en la barra del navegador. También se incorpora soporte para `prefers-reduced-motion` para mejorar la accesibilidad.
 
+### Cambio de tema
+
+El switch se encuentra en el navbar y permite alternar entre:
+
+- **Claro:** versión White, activa por defecto.
+- **Oscuro:** aplica la paleta y superficies oscuras de la guía de estilos.
+
+El control usa `role="switch"`, estados accesibles de foco y etiquetas `aria`, y conserva la selección entre visitas mediante `localStorage`.
+
 ## SEO y metadatos
 
 La landing usa `react-helmet-async` para actualizar título, descripción, Open Graph, Twitter Card y canonical URL de forma dinámica.
@@ -84,6 +98,38 @@ También se generan datos estructurados con JSON-LD para servicios y FAQ, mejora
 ## Google Analytics 4
 
 La integración de GA4 está preparada de forma opcional mediante una variable de entorno de Vite. Mientras no se configure un ID real, no se carga ningún script de Google y la web sigue funcionando normalmente.
+
+### Configuración rápida paso a paso
+
+1. Entrar a [Google Analytics](https://analytics.google.com/) y crear una cuenta o propiedad para The Osas.
+2. En la propiedad, crear un flujo de datos **Web** con el dominio de producción.
+3. Copiar el **ID de medición**, que tiene formato `G-XXXXXXXXXX`.
+4. En el proyecto local, crear un archivo `.env` en la raíz y agregar:
+
+```env
+VITE_GA_MEASUREMENT_ID=G-XXXXXXXXXX
+```
+
+5. Reemplazar `G-XXXXXXXXXX` por el ID real y reiniciar Vite con `npm run dev`.
+6. Generar una build y publicar el proyecto:
+
+```bash
+npm run build
+```
+
+7. En Vercel, ir a **Settings > Environment Variables** y crear `VITE_GA_MEASUREMENT_ID` con el mismo ID para los entornos `Production`, `Preview` y `Development`.
+8. Hacer un nuevo deploy. Abrir la web publicada y revisar **Reports > Realtime** en GA4 para confirmar que llega la visita.
+
+No subir el archivo `.env` al repositorio. El código valida el formato del ID y no inicializa GA4 si está vacío o contiene el placeholder `XXXX`.
+
+### Eventos disponibles
+
+La aplicación registra automáticamente la visita de página y estos eventos del cotizador:
+
+- `cotizador_start`: se inicia el diagnóstico.
+- `cotizador_step_complete`: se completa un paso.
+- `complete_cotizador`: se completa el cotizador.
+- `cotizador_whatsapp_click`: se hace clic para continuar por WhatsApp.
 
 ### Configuración local
 
@@ -150,6 +196,8 @@ Recomendaciones:
 - Landing funcional y responsive
 - Menú mobile operativo
 - Navbar limpio sin el enlace de Cotizador
+- Switch Claro/Oscuro funcional y persistente
+- Reglas White y Dark aisladas mediante tokens y `data-theme`
 - Logotipo y favicon integrados
 - Copy revisada y lista para presentación
 - Formulario conectado con Formspree

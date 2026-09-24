@@ -1,9 +1,9 @@
-import { Menu, MessageCircle, X } from 'lucide-react';
+import { Menu, MessageCircle, Moon, Sun, X } from 'lucide-react';
 import { useState } from 'react';
 import { siteContent } from '../../data/site';
 import { handleSectionNavigation } from '../../utils/navigation';
 
-export function Header({ navItems = [], onQuoteOpen }) {
+export function Header({ navItems = [], onQuoteOpen, theme = 'white', onThemeToggle }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const handleNavClick = (event, item) => {
@@ -46,6 +46,23 @@ export function Header({ navItems = [], onQuoteOpen }) {
         >
           <MessageCircle size={20} aria-hidden="true" />
         </a>
+
+        <button
+          type="button"
+          className="theme-switch"
+          role="switch"
+          aria-checked={theme === 'dark'}
+          aria-label={theme === 'dark' ? 'Cambiar al modo claro' : 'Cambiar al modo oscuro'}
+          title={theme === 'dark' ? 'Cambiar al modo claro' : 'Cambiar al modo oscuro'}
+          onClick={onThemeToggle}
+        >
+          <span className="theme-switch-track" aria-hidden="true">
+            <span className="theme-switch-thumb">
+              {theme === 'dark' ? <Moon size={13} /> : <Sun size={13} />}
+            </span>
+          </span>
+          <span className="theme-switch-label">{theme === 'dark' ? 'Oscuro' : 'Claro'}</span>
+        </button>
 
         <button
           type="button"

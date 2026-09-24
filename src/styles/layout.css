@@ -90,7 +90,7 @@
   align-items: center;
   justify-content: center;
   background: transparent;
-  color: var(--text);
+  color: #ffffff;
   border: 1px solid var(--border);
   border-radius: 10px;
   width: 2.5rem;
@@ -1453,4 +1453,265 @@ textarea {
 .contact-list a.contact-whatsapp:hover,
 .contact-list a.contact-whatsapp:focus-visible {
   color: var(--text);
+}
+
+.theme-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-height: 2.5rem;
+  padding: 0.25rem 0.55rem 0.25rem 0.35rem;
+  border: 1px solid rgba(23, 23, 47, 0.2);
+  border-radius: 999px;
+  background: rgba(233, 233, 255, 0.55);
+  color: var(--text);
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.theme-switch:hover,
+.theme-switch:focus-visible {
+  border-color: var(--brand-500);
+  background: var(--brand-white);
+}
+
+.theme-switch-track {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  width: 2.25rem;
+  height: 1.25rem;
+  padding: 0.15rem;
+  border-radius: 999px;
+  background: var(--brand-500);
+  transition: background 0.2s ease;
+}
+
+.theme-switch-thumb {
+  display: grid;
+  place-items: center;
+  width: 0.95rem;
+  height: 0.95rem;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--text);
+  transform: translateX(0);
+  transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+}
+
+.theme-switch-thumb svg {
+  color: #ffffff;
+  stroke: currentColor;
+}
+
+.theme-switch[aria-checked='true'] .theme-switch-thumb {
+  transform: translateX(1rem);
+  background: transparent;
+}
+
+.theme-switch-label {
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+@media (max-width: 767px) {
+  .theme-switch {
+    padding-right: 0.35rem;
+  }
+
+  .theme-switch-label {
+    display: none;
+  }
+}
+
+[data-theme='dark'] body {
+  background: var(--bg);
+}
+
+[data-theme='dark'] .site-header {
+  background: rgba(12, 16, 20, 0.88);
+  border-bottom-color: rgba(37, 41, 46, 0.8);
+}
+
+[data-theme='dark'] .brand-mark {
+  background: linear-gradient(135deg, var(--brand-500), var(--brand-400));
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+
+[data-theme='dark'] .brand-copy strong,
+[data-theme='dark'] .brand-copy small,
+[data-theme='dark'] .main-nav,
+[data-theme='dark'] .main-nav a,
+[data-theme='dark'] .menu-button {
+  color: var(--text);
+}
+
+[data-theme='dark'] .main-nav a:hover,
+[data-theme='dark'] .main-nav a:focus-visible {
+  background: rgba(116, 120, 255, 0.08);
+  color: var(--text);
+}
+
+[data-theme='dark'] .mobile-whatsapp {
+  background: var(--brand-500);
+  border-color: rgba(116, 120, 255, 0.45);
+  color: #ffffff;
+  box-shadow: 0 0 1rem rgba(82, 86, 255, 0.35);
+}
+
+[data-theme='dark'] .menu-button {
+  border-color: var(--border);
+}
+
+[data-theme='dark'] .menu-button.is-open {
+  background: rgba(116, 120, 255, 0.12);
+  border-color: rgba(116, 120, 255, 0.35);
+}
+
+[data-theme='dark'] .theme-switch {
+  border-color: rgba(116, 120, 255, 0.45);
+  background: rgba(20, 26, 33, 0.8);
+  color: var(--text);
+}
+
+[data-theme='dark'] .theme-switch:hover,
+[data-theme='dark'] .theme-switch:focus-visible {
+  background: rgba(116, 120, 255, 0.14);
+}
+
+[data-theme='dark'] .site-footer,
+[data-theme='dark'] .about-section {
+  background: rgba(20, 26, 33, 0.7);
+}
+
+[data-theme='dark'] .hero-panel,
+[data-theme='dark'] .value-banner,
+[data-theme='dark'] .faq-item,
+[data-theme='dark'] .faq-item.is-open,
+[data-theme='dark'] .contact-form,
+[data-theme='dark'] .quote-card,
+[data-theme='dark'] .card {
+  background: var(--surface);
+  border-color: var(--border);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.18);
+}
+
+[data-theme='dark'] .hero-panel {
+  background: linear-gradient(180deg, rgba(20, 26, 33, 0.9), rgba(20, 26, 33, 0.6));
+}
+
+[data-theme='dark'] .hero-panel::before,
+[data-theme='dark'] .contact-form::before {
+  background: radial-gradient(circle at top right, rgba(116, 120, 255, 0.24), transparent 42%);
+}
+
+[data-theme='dark'] .panel-badge,
+[data-theme='dark'] .service-icon {
+  background: rgba(116, 120, 255, 0.14);
+  border-color: rgba(116, 120, 255, 0.45);
+  color: var(--brand-300);
+}
+
+[data-theme='dark'] .metric-box,
+[data-theme='dark'] .quote-option,
+[data-theme='dark'] input,
+[data-theme='dark'] textarea {
+  background: rgba(255, 255, 255, 0.02);
+  border-color: var(--border);
+  color: var(--text);
+}
+
+[data-theme='dark'] .value-tags span {
+  background: rgba(116, 120, 255, 0.1);
+  border-color: var(--border);
+  color: var(--brand-300);
+}
+
+[data-theme='dark'] .btn-primary,
+[data-theme='dark'] .quote-launcher {
+  background: linear-gradient(135deg, var(--brand-500), var(--brand-400));
+  color: #ffffff;
+}
+
+[data-theme='dark'] .quote-launcher {
+  box-shadow: none;
+}
+
+[data-theme='dark'] #servicios .section-header h2:hover,
+[data-theme='dark'] #servicios .section-header h2:focus-visible,
+[data-theme='dark'] #sectores .section-header h2:hover,
+[data-theme='dark'] #sectores .section-header h2:focus-visible,
+[data-theme='dark'] #proceso .section-header h2:hover,
+[data-theme='dark'] #proceso .section-header h2:focus-visible,
+[data-theme='dark'] #faq .section-header h2:hover,
+[data-theme='dark'] #faq .section-header h2:focus-visible,
+[data-theme='dark'] #contacto .section-header h2:hover,
+[data-theme='dark'] #contacto .section-header h2:focus-visible {
+  color: var(--accent-green);
+  text-shadow: none;
+}
+
+[data-theme='dark'] .btn-secondary {
+  border-color: var(--border);
+  color: var(--text);
+}
+
+[data-theme='dark'] .quote-progress-track {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+[data-theme='dark'] .quote-progress-track span {
+  background: linear-gradient(90deg, var(--brand-500), var(--brand-300));
+}
+
+[data-theme='dark'] .quote-option:hover,
+[data-theme='dark'] .quote-option:focus-within,
+[data-theme='dark'] .quote-option.selected {
+  border-color: rgba(116, 120, 255, 0.65);
+  background: rgba(116, 120, 255, 0.12);
+  color: var(--text);
+}
+
+[data-theme='dark'] .btn-whatsapp:hover,
+[data-theme='dark'] .btn-whatsapp:focus-visible,
+[data-theme='dark'] .quote-launcher:hover,
+[data-theme='dark'] .quote-launcher:focus-visible,
+[data-theme='dark'] .mobile-whatsapp:hover,
+[data-theme='dark'] .mobile-whatsapp:focus-visible {
+  background: var(--accent-green);
+  border-color: var(--accent-green);
+  color: #0c1014;
+  box-shadow: none;
+}
+
+[data-theme='dark'] .services-section .service-card,
+[data-theme='dark'] .sector-card,
+[data-theme='dark'] .step-card,
+[data-theme='dark'] .case-card,
+[data-theme='dark'] .about-reasons-grid .reason-card {
+  border: 1px solid var(--border);
+}
+
+[data-theme='dark'] .faq-item .faq-question,
+[data-theme='dark'] .faq-item .faq-icon {
+  color: var(--text);
+  text-shadow: none;
+}
+
+[data-theme='dark'] .faq-item .faq-answer {
+  color: var(--text-muted);
+  text-shadow: none;
+}
+
+[data-theme='dark'] .main-nav {
+  background: transparent;
+}
+
+@media (max-width: 767px) {
+  [data-theme='dark'] .main-nav {
+    background: rgba(12, 16, 20, 0.96);
+    border-color: var(--border);
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.3);
+  }
 }

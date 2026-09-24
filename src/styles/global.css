@@ -4,6 +4,10 @@
   color-scheme: light;
 }
 
+[data-theme='dark'] {
+  color-scheme: dark;
+}
+
 body {
   background: var(--bg);
   line-height: 1.6;

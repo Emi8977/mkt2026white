@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Header, Footer, PrivacyPolicy } from './components/layout';
 import { Hero, Services, Quote, Sectors, Process, Cases, About, FAQ, Contact } from './components/sections';
 import { Seo } from './components/Seo';
@@ -17,6 +17,10 @@ const appSections = [
 
 function App() {
   const [isQuoteOpen, setIsQuoteOpen] = useState(false);
+  const [theme, setTheme] = useState(() => {
+    if (typeof window === 'undefined') return 'white';
+    return window.localStorage.getItem('the-osas-theme') === 'dark' ? 'dark' : 'white';
+  });
   const prefersReducedMotion = useReducedMotion();
   const pathname = typeof window !== 'undefined' ? window.location.pathname : '/';
   const isPrivacyPage = pathname.includes('/politica-privacidad') || pathname.includes('/politica-privacidad.html');
@@ -34,6 +38,11 @@ function App() {
 
     openQuote();
   };
+
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme;
+    window.localStorage.setItem('the-osas-theme', theme);
+  }, [theme]);
 
   const mainSchema = {
     '@context': 'https://schema.org',
@@ -90,7 +99,12 @@ function App() {
       />
 
       <div className="app-shell">
-        <Header navItems={appSections} onQuoteOpen={openQuote} />
+        <Header
+          navItems={appSections}
+          onQuoteOpen={openQuote}
+          theme={theme}
+          onThemeToggle={() => setTheme((current) => current === 'white' ? 'dark' : 'white')}
+        />
 
         <main>
           <Hero prefersReducedMotion={prefersReducedMotion} />
